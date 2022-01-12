@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SampleRESTAPI.Data;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SampleRESTAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -24,14 +26,11 @@ namespace SampleRESTAPI.Controllers
             _mapper = mapper ?? throw new ArgumentNullException();
         }
        
-
+        [Authorize(Roles ="student")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StudentDto>>> Get()
         {
             var students = await _student.GetAll();
-
-           
-
             var dtos = _mapper.Map<IEnumerable<StudentDto>>(students);
             return Ok(dtos);
         }
@@ -42,10 +41,10 @@ namespace SampleRESTAPI.Controllers
             var result = await _student.GetById(id.ToString());
             if (result == null) 
                 return NotFound();
-
             return Ok(_mapper.Map<StudentDto>(result));
         }
 
+        [Authorize(Roles ="admin")]
         [HttpPost]
         public async Task<ActionResult<StudentDto>> Post([FromBody]StudentForCreateDto studentforCreateDto)
         {

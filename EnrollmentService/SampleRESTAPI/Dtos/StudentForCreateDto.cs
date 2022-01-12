@@ -1,12 +1,10 @@
-﻿using SampleRESTAPI.ValidationAttributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SampleRESTAPI.Dtos
 {
-    [StudentFirstLastMustBeDifferent]
-    public class StudentForCreateDto 
+    public class StudentForCreateDto : IValidatableObject
     {
         [Required (ErrorMessage ="Kolom FirstName harus diisi")]
         [MaxLength (20, ErrorMessage ="Tidak Boleh lebih dari 20 karakter")]
@@ -18,10 +16,9 @@ namespace SampleRESTAPI.Dtos
         [Required]
         public DateTime EnrollmentDate { get; set; }
 
-        /*public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             throw new NotImplementedException();
         }
-        */
     }
 }
