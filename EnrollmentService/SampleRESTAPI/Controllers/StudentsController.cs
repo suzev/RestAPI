@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SampleRESTAPI.Controllers
 {
-    [Authorize]
+   
     [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
@@ -25,8 +25,8 @@ namespace SampleRESTAPI.Controllers
             _student = student ?? throw new ArgumentNullException();
             _mapper = mapper ?? throw new ArgumentNullException();
         }
-       
-        [Authorize(Roles ="student")]
+
+        [Authorize(Roles = "admin, student")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<StudentDto>>> Get()
         {
@@ -35,6 +35,7 @@ namespace SampleRESTAPI.Controllers
             return Ok(dtos);
         }
 
+        [Authorize(Roles = "admin, student")]
         [HttpGet("{id}")]
         public async Task<ActionResult<StudentDto>> Get(int id)
         {
@@ -61,7 +62,7 @@ namespace SampleRESTAPI.Controllers
             }
         }
 
-
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult<StudentDto>> Put(int id, [FromBody] StudentForCreateDto studentForCreateDto)
         {
@@ -78,6 +79,7 @@ namespace SampleRESTAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
