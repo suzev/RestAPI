@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SampleRESTAPI.Data;
+using SampleRESTAPI.Dtos;
 using SampleRESTAPI.Models;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace SampleRESTAPI.Controllers
 
         // GET api/<EnrollmentsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Enrollment>> Get(int id)
+        public async Task<ActionResult<EnrollmentDto>> Get(int id)
         {
             try
             {
@@ -51,22 +52,24 @@ namespace SampleRESTAPI.Controllers
             }
         }
 
+        //Menunggu Payment Service
         // POST api/<EnrollmentsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+     /*   [HttpPost]
+        public async Task<ActionResult<EnrollmentDto>> CreateEnrollment([FromBody] CreateEnrollmentDto createEnrollmentDto)
         {
-        }
+            try
+            {
+                var enrollment = _mapper.Map<Enrollment>(createEnrollmentDto);
+                var result = await _enrollment.Insert(enrollment);
+                var enrollReturn = _mapper.Map<CourseDto>(result);
 
-        // PUT api/<EnrollmentsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<EnrollmentsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+                return Ok(enrollReturn);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+       */
         }
     }
 }
