@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SampleRESTAPI.Data;
 using SampleRESTAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,14 +11,19 @@ using System.Threading.Tasks;
 
 namespace SampleRESTAPI.Controllers
 {
+
     [Route("api/[controller]")]
+    [Authorize(Roles = "admin")]
     [ApiController]
     public class EnrollmentsController : ControllerBase
     {
         private IEnrollment _enrollment;
-        public EnrollmentsController(IEnrollment enrollment)
+        private IMapper _mapper;
+
+        public EnrollmentsController(IEnrollment enrollment, IMapper mapper)
         {
             _enrollment = enrollment;
+            _mapper = mapper;
         }
 
         // GET: api/<EnrollmentsController>
@@ -28,9 +36,19 @@ namespace SampleRESTAPI.Controllers
 
         // GET api/<EnrollmentsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult<Enrollment>> Get(int id)
         {
-            return "value";
+            try
+            {
+                var results = await _enrollment.GetById(id.ToString());
+                if (results == null)
+                    return NotFound();
+                return Ok((results));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // POST api/<EnrollmentsController>

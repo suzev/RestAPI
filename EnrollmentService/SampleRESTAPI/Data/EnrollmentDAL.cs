@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SampleRESTAPI.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SampleRESTAPI.Data
@@ -13,9 +15,20 @@ namespace SampleRESTAPI.Data
             _db = db;
         }
 
-        public Task Delete(string id)
+        public async Task Delete(string id)
         {
-            throw new System.NotImplementedException();
+            var result = await GetById(id);
+            if (result == null)
+                throw new Exception("Data tidak ditemukan");
+            try
+            {
+                _db.Enrollments.Remove(result);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
         }
 
         public async Task<IEnumerable<Enrollment>> GetAll()
@@ -24,19 +37,45 @@ namespace SampleRESTAPI.Data
             return results;
         }
 
-        public Task<Enrollment> GetById(string id)
+        public async Task<Enrollment> GetById(string id)
         {
-            throw new System.NotImplementedException();
+            var result = await _db.Enrollments.Where(e => e.EnrollmentID == Int16.Parse(id)).Include(e => e.Course).Include(e => e.Student).AsNoTracking().SingleAsync();
+            return result;
         }
 
-        public Task<Enrollment> Insert(Enrollment obj)
+        public async Task<Enrollment> Insert(Enrollment obj)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var result = await _db.Enrollments.AddAsync(obj);
+                await _db.SaveChangesAsync();
+                return result.Entity;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"Error: {ex.Message}");
+            }
         }
 
-        public Task<Enrollment> Update(string id, Enrollment obj)
+        public async Task<Enrollment> Update(string id, Enrollment obj)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var result = await GetById(id);
+                if (result == null)
+                    throw new Exception($"Data id={id} tidak ditemukan");
+
+                result.CourseID = obj.CourseID;
+                result.StudentID = obj.StudentID;
+                _db.Enrollments.Update(result);
+                await _db.SaveChangesAsync();
+                return result;
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
         }
     }
 }
