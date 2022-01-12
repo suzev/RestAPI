@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SampleRESTAPI.Dtos
 {
-    public class CourseForCreateDto : IValidatableObject
+    public class CourseForCreateDto
     {
         [Required]
         public string Title { get; set; }
