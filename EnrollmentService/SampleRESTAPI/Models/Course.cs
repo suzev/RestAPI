@@ -16,6 +16,9 @@ namespace SampleRESTAPI.Models
         [Required]
         public int Credits { get; set; }
 
+        [Required]
+        public double Price { get; set; }
+
         public ICollection<Enrollment> Enrollments { get; set; }
 
 

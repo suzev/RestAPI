@@ -9,9 +9,8 @@ namespace SampleRESTAPI.Dtos
         public string Title { get; set; }
 
         [Required]
-        
         public int Credits { get; set; }
-
+        [Required]
         public double Price { get; set; }
     }
 }

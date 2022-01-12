@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace SampleRESTAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CoursesController : ControllerBase
@@ -26,8 +27,7 @@ namespace SampleRESTAPI.Controllers
         }
 
         // GET: api/<CoursesController>
-       
-        [Authorize(Roles ="admin")]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CourseDto>>> Get()
         {
@@ -36,6 +36,7 @@ namespace SampleRESTAPI.Controllers
         }
 
         // GET api/<CoursesController>/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<CourseDto>> Get(int id)
         {
@@ -47,6 +48,7 @@ namespace SampleRESTAPI.Controllers
         }
 
         // POST api/<CoursesController>
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<CourseDto>> Post([FromBody] CourseForCreateDto courseForCreateDto)
         {
@@ -65,6 +67,7 @@ namespace SampleRESTAPI.Controllers
         }
 
         // PUT api/<CoursesController>/5
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult<CourseDto>> Put(int id, [FromBody] CourseForCreateDto courseForCreateDto)
         {
@@ -83,6 +86,7 @@ namespace SampleRESTAPI.Controllers
         }
 
         // DELETE api/<CoursesController>/5
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -97,6 +101,7 @@ namespace SampleRESTAPI.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpGet("bytitle")]
         public async Task<IEnumerable<Course>> GetByTitle(string title)
         {

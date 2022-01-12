@@ -17,11 +17,9 @@ namespace SampleRESTAPI.Data
 
             var students = new Student[]
             {
-                new Student{FirstName="Erick",LastName="Kurniawan",EnrollmentDate=DateTime.Parse("2021-12-12")},
-                new Student{FirstName="Agus",LastName="Kurniawan",EnrollmentDate=DateTime.Parse("2021-10-12")},
-                new Student{FirstName="Peter",LastName="Parker",EnrollmentDate=DateTime.Parse("2021-12-12")},
-                new Student{FirstName="Tony",LastName="Stark",EnrollmentDate=DateTime.Parse("2021-12-12")},
-                new Student{FirstName="Bruce",LastName="Banner",EnrollmentDate=DateTime.Parse("2021-12-12")},
+                new Student{FirstName="Suzev",LastName="Atsma",EnrollmentDate=DateTime.Now},
+                new Student{FirstName="Ridwan",LastName="Hanim",EnrollmentDate=DateTime.Now},
+                new Student{FirstName="Yadi",LastName="Sembako",EnrollmentDate=DateTime.Now},          
             };
 
             foreach (var s in students)
@@ -33,11 +31,11 @@ namespace SampleRESTAPI.Data
 
             var courses = new Course[]
             {
-                new Course{Title="Cloud Fundamentals",Credits=3},
-                new Course{Title="Microservices Architecture",Credits=3},
-                new Course{Title="Frontend Programming",Credits=3},
-                new Course{Title="Backend RESTful API",Credits=3},
-                new Course{Title="Entity Frmework Core",Credits=3}
+                new Course{Title="Cloud Fundamentals",Credits=3, Price=9000},
+                new Course{Title="Microservices Architecture",Credits=3, Price=8000},
+                new Course{Title="Frontend Programming",Credits=3, Price=5000},
+                new Course{Title="Backend RESTful API",Credits=3, Price=7000},
+                new Course{Title="Entity Frmework Core",Credits=3, Price=6000}
             };
 
             foreach (var c in courses)
@@ -49,15 +47,15 @@ namespace SampleRESTAPI.Data
 
             var enrollments = new Enrollment[]
             {
-                new Enrollment{StudentID=1,CourseID=1,Grade=Grade.A},
-                new Enrollment{StudentID=1,CourseID=2,Grade=Grade.B},
-                new Enrollment{StudentID=1,CourseID=3,Grade=Grade.C},
-                new Enrollment{StudentID=2,CourseID=1,Grade=Grade.C},
-                new Enrollment{StudentID=2,CourseID=2,Grade=Grade.C},
-                new Enrollment{StudentID=2,CourseID=3,Grade=Grade.C},
-                new Enrollment{StudentID=3,CourseID=1,Grade=Grade.A},
-                new Enrollment{StudentID=3,CourseID=2,Grade=Grade.B},
-                new Enrollment{StudentID=3,CourseID=3,Grade=Grade.C},
+                new Enrollment{StudentID=1,CourseID=1,Grade=1},
+                new Enrollment{StudentID=1,CourseID=2,Grade=2},
+                new Enrollment{StudentID=1,CourseID=3,Grade=3},
+                new Enrollment{StudentID=2,CourseID=1,Grade=1},
+                new Enrollment{StudentID=2,CourseID=2,Grade=2},
+                new Enrollment{StudentID=2,CourseID=3,Grade=3},
+                new Enrollment{StudentID=3,CourseID=1,Grade=1},
+                new Enrollment{StudentID=3,CourseID=2,Grade=2},
+                new Enrollment{StudentID=3,CourseID=3,Grade=3},
             };
 
             foreach(var e in enrollments)
