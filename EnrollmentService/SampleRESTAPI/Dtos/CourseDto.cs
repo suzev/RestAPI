@@ -8,5 +8,7 @@
 
         public int TotalHours { get; set; }
 
+        public double Price { get; set; }
+
     }
 }
