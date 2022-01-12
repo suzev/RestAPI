@@ -56,7 +56,7 @@ namespace SampleRESTAPI.Controllers
             {
                 var course = _mapper.Map<Course>(courseForCreateDto);
                 var result =  await _course.Insert(course);
-                var courseReturn = _mapper.Map<Dtos.StudentDto>(result);
+                var courseReturn = _mapper.Map<CourseDto>(result);
   
                 return Ok(courseReturn);  
             }
