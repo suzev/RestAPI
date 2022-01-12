@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SampleRESTAPI.Dtos
 {
-    public class StudentForCreateDto : IValidatableObject
+    public class StudentForCreateDto
     {
         [Required (ErrorMessage ="Kolom FirstName harus diisi")]
         [MaxLength (20, ErrorMessage ="Tidak Boleh lebih dari 20 karakter")]
@@ -13,12 +13,10 @@ namespace SampleRESTAPI.Dtos
         [Required(ErrorMessage ="Kolom LastName harus diisi")]
         [MaxLength(20, ErrorMessage ="Tidak Boleh lebih dari 20 karakter")]
         public string LastName { get; set; }
+        
         [Required]
         public DateTime EnrollmentDate { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
