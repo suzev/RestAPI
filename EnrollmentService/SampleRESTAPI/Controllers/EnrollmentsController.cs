@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SampleRESTAPI.Data;
 using SampleRESTAPI.Dtos;
 using SampleRESTAPI.Models;
+using SampleRESTAPI.SyncDataServices.Http;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,11 +21,13 @@ namespace SampleRESTAPI.Controllers
     {
         private IEnrollment _enrollment;
         private IMapper _mapper;
+        private IEnrollmentDataClient _dataClient;
 
-        public EnrollmentsController(IEnrollment enrollment, IMapper mapper)
+        public EnrollmentsController(IEnrollment enrollment, IMapper mapper, IEnrollmentDataClient dataClient)
         {
             _enrollment = enrollment;
             _mapper = mapper;
+            _dataClient = dataClient;
         }
 
         // GET: api/<EnrollmentsController>
@@ -54,16 +57,14 @@ namespace SampleRESTAPI.Controllers
 
         //Menunggu Payment Service
         // POST api/<EnrollmentsController>
-        /*   [HttpPost]
-           public async Task<ActionResult<EnrollmentDto>> CreateEnrollment([FromBody] CreateEnrollmentDto createEnrollmentDto)
+          [HttpPost]
+           public async Task<ActionResult> CreateEnrollment([FromBody] CreateEnrollmentDto createEnrollmentDto)
            {
                try
                {
-                   var enrollment = _mapper.Map<Enrollment>(createEnrollmentDto);
-                   var result = await _enrollment.Insert(enrollment);
-                   var enrollReturn = _mapper.Map<CourseDto>(result);
+                   await _dataClient.CreateEnrollmentFromPaymentService(createEnrollmentDto);
 
-                   return Ok(enrollReturn);
+                   return Ok("Success");
                }
                catch (Exception ex)
                {
@@ -71,6 +72,6 @@ namespace SampleRESTAPI.Controllers
                }
 
            }
-        */
+        
     }
 }
