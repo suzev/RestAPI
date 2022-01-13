@@ -1,28 +1,20 @@
 ﻿using PaymentService.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PaymentService.Data
 {
-    public class PaymentDAL : IPayment<Payment>
+    public class PaymentDAL : IPayment
     {
-        private AppDbContext _db;
+        private readonly AppDbContext _db;
 
         public PaymentDAL (AppDbContext db)
         {
             _db = db;
         }
-        public Task<IEnumerable<Payment>> GetAll()
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public Task<Payment> GetById(int id)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<Payment> Insert(Payment obj)
+        public Task<IEnumerable> CreatePayment(PaymentInput paymentInput)
         {
             throw new System.NotImplementedException();
         }

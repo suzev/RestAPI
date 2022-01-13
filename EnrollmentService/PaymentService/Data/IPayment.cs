@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PaymentService.Data
 {
-    public interface IPayment<T>
+    public interface IPayment
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> Insert(T obj);
-        Task<T> GetById(int id);
+        Task<IEnumerable> CreatePayment (PaymentInput paymentInput);
+
     }
 }
