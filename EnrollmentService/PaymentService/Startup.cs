@@ -32,7 +32,7 @@ namespace PaymentService
             services.AddDbContext<Kasus1Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
-            //services.AddScoped<IPayment, PaymentDAL>();
+            services.AddScoped<IEnrollment, EnrollmentDAL>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddSwaggerGen(c =>

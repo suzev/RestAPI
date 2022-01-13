@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PaymentService.Data
 {
-    public class PaymentDAL : IPayment
+    public class EnrollmentDAL : IEnrollment
     {
         private readonly Kasus1Context _db;
 
-        public PaymentDAL (Kasus1Context db)
+        public EnrollmentDAL (Kasus1Context db)
         {
             _db = db;
         }

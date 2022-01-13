@@ -1,6 +1,6 @@
 ﻿namespace PaymentService
 {
-    public class PaymentInput
+    public class CreateEnrollmentDto
     {
         public int CourseId { get; set; }
         public int StudentId { get; set; }

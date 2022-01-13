@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PaymentService.Data
 {
-    public interface IPayment
+    public interface IEnrollment
     {
         Task CreatePayment (Enrollment enrollment);
 
