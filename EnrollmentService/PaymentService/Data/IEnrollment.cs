@@ -7,7 +7,7 @@ namespace PaymentService.Data
 {
     public interface IEnrollment
     {
-        Task CreatePayment (Enrollment enrollment);
+        Task CreateEnrollment (Enrollment enrollment);
 
     }
 }
