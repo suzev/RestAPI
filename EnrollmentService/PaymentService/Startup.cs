@@ -19,18 +19,31 @@ namespace PaymentService
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
 
+        private readonly IWebHostEnvironment _env;
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Kasus1Context>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            if (_env.IsProduction())
+            {
+                Console.WriteLine("==>Using MSSQL Server DB");
+                services.AddDbContext<Kasus1Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ProdConnection")));
+            }
+
+            else
+            {
+                services.AddDbContext<Kasus1Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            }
 
             services.AddScoped<IEnrollment, EnrollmentDAL>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
