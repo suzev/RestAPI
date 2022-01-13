@@ -35,7 +35,6 @@ namespace PaymentService.Controllers
 
                 return BadRequest(ex.Message);
             }
-
         }
 
     }
