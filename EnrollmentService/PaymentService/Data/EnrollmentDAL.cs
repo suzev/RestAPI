@@ -14,7 +14,7 @@ namespace PaymentService.Data
         {
             _db = db;
         }
-        public async Task CreatePayment(Enrollment enrollment)
+        public async Task CreateEnrollment(Enrollment enrollment)
         {
             if (enrollment == null) throw new ArgumentNullException(nameof(enrollment));
             _db.Enrollments.Add(enrollment);
