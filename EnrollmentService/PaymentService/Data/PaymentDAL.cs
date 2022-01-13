@@ -7,13 +7,12 @@ namespace PaymentService.Data
 {
     public class PaymentDAL : IPayment
     {
-        private readonly AppDbContext _db;
+        private readonly Kasus1Context _db;
 
-        public PaymentDAL (AppDbContext db)
+        public PaymentDAL (Kasus1Context db)
         {
             _db = db;
         }
-
         public Task<IEnumerable> CreatePayment(PaymentInput paymentInput)
         {
             throw new System.NotImplementedException();

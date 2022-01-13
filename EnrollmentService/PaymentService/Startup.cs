@@ -29,10 +29,10 @@ namespace PaymentService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options =>
+            services.AddDbContext<Kasus1Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
 
-            services.AddScoped<IPayment, PaymentDAL>();
+            //services.AddScoped<IPayment, PaymentDAL>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
             services.AddSwaggerGen(c =>

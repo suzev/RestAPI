@@ -1,10 +1,12 @@
-﻿namespace PaymentService.Profile
+﻿using PaymentService.Models;
+
+namespace PaymentService.Profile
 {
-    public class PaymentsProfile
+    public class PaymentsProfile : AutoMapper.Profile
     {
        public PaymentsProfile()
         {
-           
+            CreateMap<PaymentInput, Enrollment>();
         }
     }
 }
