@@ -1,4 +1,5 @@
 ﻿using PaymentService.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,9 +14,11 @@ namespace PaymentService.Data
         {
             _db = db;
         }
-        public Task<IEnumerable> CreatePayment(PaymentInput paymentInput)
+        public async Task CreatePayment(Enrollment enrollment)
         {
-            throw new System.NotImplementedException();
+            if (enrollment == null) throw new ArgumentNullException(nameof(enrollment));
+            _db.Enrollments.Add(enrollment);
+            await _db.SaveChangesAsync();
         }
     }
 }
