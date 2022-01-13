@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SampleRESTAPI.Data;
 using SampleRESTAPI.Helpers;
+using SampleRESTAPI.SyncDataServices.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,7 +76,8 @@ namespace SampleRESTAPI
             services.AddScoped<ICourse, CourseDAL>();
             services.AddScoped<IEnrollment, EnrollmentDAL>();
             services.AddScoped<IUser, UserDAL>();
-            
+            services.AddHttpClient<IEnrollmentDataClient, HttpEnrollmentDataClient>();
+
             services.AddControllers().AddNewtonsoftJson(options=>
             options.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore)
                 .AddXmlDataContractSerializerFormatters(); ;
