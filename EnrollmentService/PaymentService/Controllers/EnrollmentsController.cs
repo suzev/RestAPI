@@ -21,6 +21,7 @@ namespace PaymentService.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost]
         public async Task<ActionResult> CreateEnrollment (CreateEnrollmentDto createEnrollmentDto)
         {
             try
