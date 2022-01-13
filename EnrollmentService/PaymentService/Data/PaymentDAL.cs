@@ -6,6 +6,12 @@ namespace PaymentService.Data
 {
     public class PaymentDAL : IPayment<Payment>
     {
+        private AppDbContext _db;
+
+        public PaymentDAL (AppDbContext db)
+        {
+            _db = db;
+        }
         public Task<IEnumerable<Payment>> GetAll()
         {
             throw new System.NotImplementedException();
