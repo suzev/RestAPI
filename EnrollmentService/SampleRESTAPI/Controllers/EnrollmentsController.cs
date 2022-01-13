@@ -54,22 +54,23 @@ namespace SampleRESTAPI.Controllers
 
         //Menunggu Payment Service
         // POST api/<EnrollmentsController>
-     /*   [HttpPost]
-        public async Task<ActionResult<EnrollmentDto>> CreateEnrollment([FromBody] CreateEnrollmentDto createEnrollmentDto)
-        {
-            try
-            {
-                var enrollment = _mapper.Map<Enrollment>(createEnrollmentDto);
-                var result = await _enrollment.Insert(enrollment);
-                var enrollReturn = _mapper.Map<CourseDto>(result);
+        /*   [HttpPost]
+           public async Task<ActionResult<EnrollmentDto>> CreateEnrollment([FromBody] CreateEnrollmentDto createEnrollmentDto)
+           {
+               try
+               {
+                   var enrollment = _mapper.Map<Enrollment>(createEnrollmentDto);
+                   var result = await _enrollment.Insert(enrollment);
+                   var enrollReturn = _mapper.Map<CourseDto>(result);
 
-                return Ok(enrollReturn);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-       */
-        }
+                   return Ok(enrollReturn);
+               }
+               catch (Exception ex)
+               {
+                   return BadRequest(ex.Message);
+               }
+
+           }
+        */
     }
 }
