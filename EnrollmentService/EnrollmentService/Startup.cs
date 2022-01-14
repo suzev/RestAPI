@@ -40,7 +40,7 @@ namespace EnrollmentService
         {
             if (_env.IsProduction())
             {
-                Console.WriteLine("==>Using MSSQL Server DB");
+                Console.WriteLine("==>Using Azure SQL Server DB");
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("ProdConnection")));
             }
